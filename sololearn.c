@@ -1,21 +1,17 @@
-FILE *ptr;
-int a[10];
-int b[10];
-int c;
+#include <stdio.h>
 
-for (c=0;c<10;c++){
-    a[c] =c;
-};
 
-ptr = fopen("datafile.bin", "wb");
-fwrite(a, sizeof(a[0]), sizeof(a)/sizeof(a[0]),ptr);
-fclose(ptr);
+typedef struct {
+int a;
+char b[29];
+} worker;
+int main()
+{
+    FILE *ptr;
+    worker one, two, three;
+    one.a =34;
+    two.a =6545;
 
-ptr = fopen("datafile.bin", "rb");
-fread(b,sizeof(a[0]), sizeof(a)/sizeof(a[0]),ptr);
 
-fclose(ptr);
-
- for (c=0;c<10;c++){
-     printf("%d", b[c]);
-};
+    return 0;
+}
