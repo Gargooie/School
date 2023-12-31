@@ -9,3 +9,4 @@ for i in range((x + y) // 2):
   a += "G"
   y -= 1
 print(a)
+print()
