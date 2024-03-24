@@ -10,8 +10,6 @@ class Player:
         self.strategy = strategy
         self.actions = []  # Добавляем список действий соперника
         self.opponent_actions = []  # Добавляем список действий соперника
-#удалить ниже
-        self.last_opponent_action = None
 
     def cooperate(self):
         return "cooperate"
@@ -59,8 +57,6 @@ class Game:
         self.player2.actions.append(action2)
         self.player2.opponent_actions.append(action1)
 #удалить ниже
-        self.player1.last_opponent_action = action2
-        self.player2.last_opponent_action = action1
 
         print(f"Раунд: {len(self.player1.scores)}")
         print("очк 1 игрока вся сумма: ", self.player1.score_sum)
