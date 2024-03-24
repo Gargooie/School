@@ -1,0 +1,11 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     main
+relocations:
+  - { offsetInCU: 0x27, offset: 0x91, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003DCC, symSize: 0xD0 }
+  - { offsetInCU: 0x3D, offset: 0xA7, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003DCC, symSize: 0xD0 }
+  - { offsetInCU: 0x5A, offset: 0xC4, size: 0x8, addend: 0x0, symName: '_$sSa12_endMutationyyF', symObjAddr: 0x168, symBinAddr: 0x100003F34, symSize: 0xC }
+  - { offsetInCU: 0x80, offset: 0xEA, size: 0x8, addend: 0x0, symName: '_$ss27_finalizeUninitializedArrayySayxGABnlF', symObjAddr: 0xD0, symBinAddr: 0x100003E9C, symSize: 0x40 }
+  - { offsetInCU: 0xA8, offset: 0x112, size: 0x8, addend: 0x0, symName: '_$ss5print_9separator10terminatoryypd_S2StFfA0_', symObjAddr: 0x110, symBinAddr: 0x100003EDC, symSize: 0x2C }
+  - { offsetInCU: 0xC3, offset: 0x12D, size: 0x8, addend: 0x0, symName: '_$ss5print_9separator10terminatoryypd_S2StFfA1_', symObjAddr: 0x13C, symBinAddr: 0x100003F08, symSize: 0x2C }
+...

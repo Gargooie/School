@@ -5,15 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(Windows) Запустить",
-            "type": "cppvsdbg",
+            "type": "lldb",
             "request": "launch",
-            "program": "Введите имя программы, например: ${workspaceFolder}/a.exe",
+            "preLaunchTask": "swiftc with debug",
+            "name": "Debug",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false
+            "sourceLanguages": [
+                "swift"
+            ]
         }
+        // {
+        //     "name": "(Windows) Запустить",
+        //     "type": "cppvsdbg",
+        //     "request": "launch",
+        //     "program": "Введите имя программы, например: ${workspaceFolder}/a.exe",
+        //     "args": [],
+        //     "stopAtEntry": false,
+        //     "cwd": "${workspaceFolder}",
+        //     "environment": [],
+        //     "externalConsole": false
+        // }
     ]
 }

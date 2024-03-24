@@ -10,6 +10,8 @@ class Player:
         self.strategy = strategy
         self.actions = []  # Добавляем список действий соперника
         self.opponent_actions = []  # Добавляем список действий соперника
+#удалить ниже
+        self.last_opponent_action = None
 
     def cooperate(self):
         return "cooperate"
@@ -18,7 +20,9 @@ class Player:
         return "betray"
 
     def choose_action(self):
-        return self.strategy.choose_action(self.opponent_actions)
+        return self.strategy.choose_action(self.actions, self.opponent_actions)
+
+        # return self.strategy.choose_action(self.last_opponent_action)
 
     def get_score_sum(self):
         return self.score_sum
@@ -54,9 +58,9 @@ class Game:
         self.player1.opponent_actions.append(action2)
         self.player2.actions.append(action2)
         self.player2.opponent_actions.append(action1)
-
-        # self.player1.last_opponent_action = action2
-        # self.player2.last_opponent_action = action1
+#удалить ниже
+        self.player1.last_opponent_action = action2
+        self.player2.last_opponent_action = action1
 
         print(f"Раунд: {len(self.player1.scores)}")
         print("очк 1 игрока вся сумма: ", self.player1.score_sum)
@@ -69,7 +73,7 @@ class Strategy:
     def __init__(self, name):
         self.name = name
 
-    def choose_action(self, player_actions, opponent_actions):
+    def choose_action(self, last_opponent_action):
         pass
 
 class RandomStrategy(Strategy):
@@ -80,7 +84,7 @@ class RandomStrategy(Strategy):
 
 class FriedmanStrategy(Strategy):
     """
-    Класс Фридман, начинает с сотрудничества. Если предают 1 раз начинает предавать всегда.
+    Класс Фридман, начинает с сотрудничества. Если предают 1 раз начинает предавать всегда
     
     Атрибуты:
     - name: имя игрока
@@ -97,27 +101,15 @@ class JossStrategy(Strategy):
     def __init__(self):
         self.name = "Joss"
     def choose_action(self, player_actions, opponent_actions):
-        if self.betray_count == 1:
+        if opponent_actions[-1:] == "betray" or random.random() < 0.1:
             return "betray"
-        if opponent_actions[-1:] == "betray":
-            self.betray_count += 1
-        return "cooperate"
+        else:
+            return "cooperate"
 
-class SampleStrategy(Strategy):
-    def __init__(self):
-        self.name = "Sample"
-
-    def choose_action(self, player_actions, opponent_actions):
-        # if self.betray_count == 1:
-        #     return "betray"
-        if opponent_actions[-2:] == ["betray", "betray"]:
-            return "betray"
-        return "cooperate"
-
-player1 = Player("Игрок 1", RandomStrategy())
-player2 = Player("Игрок 2", RandomStrategy())
-# player1 = Player("Игрок 1", random.choice([RandomStrategy("Random"), FriedmanStrategy("Friedman"), JossStrategy("Joss")]))
-# player2 = Player("Игрок 2", random.choice([RandomStrategy("Random"), FriedmanStrategy("Friedman"), JossStrategy("Joss")]))
+# player1 = Player("Игрок 1", RandomStrategy())
+# player2 = Player("Игрок 2", RandomStrategy())
+player1 = Player("Игрок 1", random.choice([RandomStrategy(), FriedmanStrategy(), JossStrategy()]))
+player2 = Player("Игрок 2", random.choice([RandomStrategy(), FriedmanStrategy(), JossStrategy()]))
 game = Game(player1, player2)
 
 for _ in range(10):
